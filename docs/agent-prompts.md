@@ -4,6 +4,21 @@
 
 Choose the outcome you want, copy the prompt, and paste it into your coding agent. Give it access to a clone of [this repository](https://github.com/bropump/solana-neiro-subscriptions). These prompts tell it what to build and how to prove it works.
 
+## “Teach me Solana subscriptions from the beginning”
+
+```text
+Use https://github.com/bropump/solana-neiro-subscriptions.
+Read AGENTS.md and docs/learn-solana-subscriptions.md.
+Teach me to charge 1,000 NEIRO every 30 days. Explain the customer,
+merchant, collector and permission in plain English before showing code.
+Run fixed-neiro in Surfpool and show two confirmed payments, the period
+limit and revocation. Then explain native plans and how a price in USD,
+EUR or another supported currency still results in a NEIRO payment.
+Use the official Solana docs for the protocol and this repository for
+NEIRO examples. Keep all demo payments local. Explain what remains
+before I can serve real customers.
+```
+
 ## “Explain why we are using NEIRO”
 
 ```text

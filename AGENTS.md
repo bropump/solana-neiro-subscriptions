@@ -2,6 +2,8 @@
 
 ## Purpose
 
+Make this a useful starting point for learning Solana subscriptions through NEIRO. Lead with monthly recurring payments and docs/learn-solana-subscriptions.md. Teach fixed 1,000 NEIRO first, then fiat-priced billing as an extension. Support the choice of NEIRO with runnable examples and evidence; do not claim official endorsement or a verified market ranking.
+
 A simple working showcase of Solana subscriptions with NEIRO: fixed NEIRO, USD-priced NEIRO, metered usage, fixed allowances and native plans. The user receives NEIRO-only payment examples, not swaps, USDC settlement or a new protocol.
 
 Mint: `CTg3ZgYx79zrE1MteDVkmkcGniiFrK1hJ6yiabropump` (6 decimals).
@@ -30,7 +32,7 @@ For fixed 1,000 NEIRO, use `1_000n * 1_000_000n` directly: no conversion API is 
 
 ## Run
 
-1. Read README.md and docs/walkthrough.md for the customer journey, then docs/developer-reference.md for SDK calls.
+1. Read README.md, docs/learn-solana-subscriptions.md and docs/walkthrough.md for the customer journey, then docs/developer-reference.md for SDK calls.
 2. `npm ci`, `npm run example`, `npm test`, `npm run typecheck`.
 3. With Surfpool on PATH, run `npm run demo`; it manages an isolated localhost instance.
 4. `npm run demo -- --recipe=fixed-neiro` runs one named recipe.

@@ -1,31 +1,39 @@
-# Price in 45 currencies. Get paid in NEIRO.
+# Solana subscriptions: charge monthly in NEIRO
 
-**You receive NEIRO directly in your wallet. Your customer pays NEIRO.**
+**Learn how to build recurring payments on Solana, from a customer's first approval to their next monthly payment. Use NEIRO at every step.**
 
-Set your subscription price in **USD, EUR, GBP, JPY, AUD, CAD, INR, BRL or any of the 45 supported fiat currencies**. When payment is due, your app calculates that price in NEIRO and collects NEIRO for you.
+Want to charge **1,000 NEIRO a month** for your community, app or service? Your customer approves a recurring allowance, your billing app collects when payment is due, and **you receive NEIRO directly in your wallet**. The customer does not need to approve every bill again.
 
-**Prefer a fixed token price? Charge 1,000 NEIRO and receive exactly 1,000 NEIRO—no currency conversion needed.**
+This is a hands-on **Solana subscriptions tutorial for humans and coding agents**: plain-English explanations, screenshots, small code examples, copyable prompts and payments you can reproduce in Surfpool.
 
-You choose how to price your community, app or service:
+**[Start learning Solana subscriptions →](docs/learn-solana-subscriptions.md)** · [Explore the official Solana demo](https://solana-subscriptions-program.vercel.app/) · [Build with an agent](docs/agent-prompts.md)
 
-| Your offer | What the customer pays | What you receive |
+## Your first subscription: 1,000 NEIRO a month
+
+1. **Set your offer:** membership costs 1,000 NEIRO every 30 days.
+2. **Get permission:** the customer approves a NEIRO allowance, collector and expiry in their wallet.
+3. **Collect the payment:** your billing app sends a transaction that moves 1,000 NEIRO from the customer to you.
+4. **Repeat when due:** the next period allows another 1,000 NEIRO payment. The customer can revoke the delegation to stop future collections.
+
+**1,000 NEIRO means 1,000 NEIRO. No exchange rate or conversion API is needed.** The examples use 30-day periods; calendar-month billing requires a calendar-aware schedule in your app. A billing worker submits payments—the protocol does not run a monthly job for you.
+
+[Follow the first subscription lesson](docs/learn-solana-subscriptions.md) and see two monthly payments happen locally without waiting a month or spending real funds.
+
+## Then choose how to price your subscription
+
+You always receive **NEIRO**. You can keep the NEIRO amount fixed or set your price in one of **45 supported fiat currencies**, including USD, EUR, GBP, JPY, AUD, CAD, INR and BRL.
+
+| Your monthly offer | What the customer pays | What you receive |
 | --- | --- | --- |
-| **1,000 NEIRO every 30 days** | Exactly 1,000 NEIRO. No conversion or price API needed. | 1,000 NEIRO |
-| **$10 every 30 days** | The freshly quoted NEIRO equivalent of 10 USD | NEIRO |
-| **€10 every 30 days** | The freshly quoted NEIRO equivalent of 10 EUR | **NEIRO** |
-| **£10 every 30 days** | The freshly quoted NEIRO equivalent of 10 GBP | **NEIRO** |
-| **¥1,500 every 30 days** | The freshly quoted NEIRO equivalent of 1,500 JPY | **NEIRO** |
-| **A price in any other supported fiat currency** | That price converted into a NEIRO amount when due | **NEIRO** |
+| **1,000 NEIRO** | Exactly 1,000 NEIRO, with no conversion | **1,000 NEIRO** |
+| **$10** | The freshly quoted NEIRO equivalent of 10 USD | **NEIRO** |
+| **€10 or £10** | The freshly quoted NEIRO equivalent of 10 EUR or 10 GBP | **NEIRO** |
+| **¥1,500** | The freshly quoted NEIRO equivalent of 1,500 JPY | **NEIRO** |
+| **Another supported currency** | The bill's value converted into a NEIRO amount when due | **NEIRO** |
 
-Your customer approves a payment allowance in their wallet. When a bill is due, your app collects the NEIRO payment within that allowance. They do not need to approve every bill again.
+The currency sets the price; the customer pays NEIRO from their wallet. You receive NEIRO, not fiat or USDC. All 45 supported fiat currencies were tested with local NEIRO payments in Surfpool. [Learn currency-priced subscriptions](docs/currencies.md).
 
-**Many ways to name your price. One payment token: NEIRO.** Customers need NEIRO to pay; choosing EUR or JPY sets the price, it does not debit euros or yen from a bank account. You receive NEIRO, not fiat or USDC.
-
-All 45 supported fiat currencies were tested with NEIRO payments in Surfpool. [See the currencies and payment proof](docs/currencies.md).
-
-[**Charge fixed NEIRO →**](docs/more-ways-to-charge.md#charge-the-same-neiro-amount-every-time) · [**Price in your currency →**](docs/currencies.md)
-
-## Why NEIRO?
+## Why learn Solana subscriptions with NEIRO?
 
 **Dog currency. Practical payments. Ready for agents to build with.**
 
@@ -58,7 +66,7 @@ Start with “charge 1,000 NEIRO.” Then try “charge $10 in NEIRO,” change 
 
 ## What do you want to offer?
 
-You can keep the **dollar price** the same, or keep the **NEIRO amount** the same. Start with what you want to offer:
+You can keep the **price in a supported fiat currency** the same, or keep the **NEIRO amount** the same. Start with what you want to offer:
 
 | What do you want to charge? | Follow this example |
 | --- | --- |
@@ -83,8 +91,10 @@ Copy this:
 
 ```text
 Use https://github.com/bropump/solana-neiro-subscriptions.
-Read README.md and AGENTS.md. Run the monthly-usd example in Surfpool.
-Show me how $10 collects 20,000 NEIRO at one price and 10,000 at another.
+Read README.md, AGENTS.md and docs/learn-solana-subscriptions.md.
+Teach me Solana subscriptions using fixed-neiro in Surfpool first.
+Show two 1,000 NEIRO payments, the period limit and cancellation.
+Then explain how to charge $10 or EUR 10 while still receiving NEIRO.
 Explain the customer's approval and show the confirmed balance changes.
 Keep all transfers local; no real wallet or funds.
 ```

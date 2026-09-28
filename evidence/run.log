@@ -1,0 +1,24 @@
+
+> solana-neiro-subscriptions@1.0.0 demo:live
+> node scripts/demo.mjs --live
+
+Starting an isolated local Surfpool instance…
+  PASS monthly NEIRO cap
+  PASS customer revoked
+PASS fixed NEIRO: 1,000 each month; cap, reset and revocation enforced.
+  PASS same invoice cannot charge twice
+  PASS same invoice cannot charge twice
+  PASS stale dollar price
+  PASS USD invoice over NEIRO cap
+PASS monthly USD: $10 pulls 20,000 then 10,000 NEIRO as price doubles.
+PASS USD schedules: $3 every 7 days and $25 every 90 days, including reset.
+  PASS daily usage cap
+PASS metered USD: $0.25 per event, daily cap and reset.
+  PASS total allowance exhausted
+PASS fixed allowance: 3,000 NEIRO total, collected in two installments.
+  PASS plan destination allowlist
+  PASS plan period cap
+  PASS plan cancelled at period end
+PASS native plan: subscribe, collect, destination restriction, reset and cancellation.
+PASS NeiroPay live $10 conversion: 19817.718102 NEIRO transferred directly.
+ALL RECIPES PASSED (16 confirmed direct NEIRO transfers).

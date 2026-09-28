@@ -1,0 +1,17 @@
+
+> solana-neiro-subscriptions@1.0.0 test
+> tsx --test billing.test.ts prices.test.ts
+
+✔ $10 uses current price, exact integer arithmetic and six decimals (0.558791ms)
+✔ invalid, stale and above-cap prices never charge (0.26025ms)
+✔ duplicate, concurrent and restarted workers cannot double debit; uncertain sends stay pending (4.147334ms)
+✔ NeiroPay uses integer baseUnits and respects exact invoice and expiry (0.73325ms)
+✔ USD tiers and per-use prices use exact base units (0.100167ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 180.778208

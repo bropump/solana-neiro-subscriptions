@@ -1,0 +1,14 @@
+node_modules/
+.env
+.env.*
+!.env.example
+*.sqlite
+*.sqlite-*
+.surfpool/
+/proof.json
+/live-price.json
+*.keypair.json
+/run.log
+/unit-tests.log
+
+work/

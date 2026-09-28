@@ -1,0 +1,87 @@
+{
+  "mint": "CTg3ZgYx79zrE1MteDVkmkcGniiFrK1hJ6yiabropump",
+  "results": [
+    {
+      "recipe": "fixed-neiro",
+      "outcome": "passed",
+      "chargesNEIRO": [
+        "1000",
+        "1000"
+      ],
+      "periodDays": 30
+    },
+    {
+      "recipe": "monthly-usd",
+      "outcome": "passed",
+      "usd": "10",
+      "prices": [
+        "0.0005",
+        "0.001"
+      ],
+      "chargesNEIRO": [
+        "20000",
+        "10000"
+      ]
+    },
+    {
+      "recipe": "usd-7-days",
+      "outcome": "passed",
+      "usd": "3",
+      "periodDays": 7,
+      "chargesNEIRO": [
+        "6000",
+        "6000"
+      ]
+    },
+    {
+      "recipe": "usd-90-days",
+      "outcome": "passed",
+      "usd": "25",
+      "periodDays": 90,
+      "chargesNEIRO": [
+        "50000",
+        "50000"
+      ]
+    },
+    {
+      "recipe": "metered-usd",
+      "outcome": "passed",
+      "usdPerEvent": "0.25",
+      "chargesNEIRO": [
+        "500",
+        "500",
+        "500"
+      ],
+      "dailyNEIROCap": "1000"
+    },
+    {
+      "recipe": "fixed-allowance",
+      "outcome": "passed",
+      "totalNEIRO": "3000",
+      "chargesNEIRO": [
+        "1000",
+        "2000"
+      ]
+    },
+    {
+      "recipe": "native-plan",
+      "outcome": "passed",
+      "chargesNEIRO": [
+        "1000",
+        "1000"
+      ],
+      "periodDays": 30
+    },
+    {
+      "recipe": "neiropay-live",
+      "outcome": "passed",
+      "usd": "10",
+      "amount": "19817718102",
+      "expiresAt": 1790608446392,
+      "quotedAt": 1790608436553,
+      "freshnessBasis": "upstream_fetch_time; blockId is supplied when available, not a verified market timestamp",
+      "source": "price.neiropay.app"
+    }
+  ],
+  "confirmedTransfers": 16
+}

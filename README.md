@@ -1,8 +1,20 @@
 # Get paid in NEIRO, on a schedule
 
-**Want to charge $10 a month for your community, app or service—and let people pay in NEIRO? This guide shows you how.**
+**Charge 1,000 NEIRO. Or price your service in dollars, euros, pounds or another supported currency—and receive NEIRO.**
 
-Your customer approves a payment allowance in their wallet. When a bill is due, your app collects the NEIRO payment. They do not need to open their wallet and approve every bill.
+You choose how to price your community, app or service:
+
+| Your offer | What the customer pays | What you receive |
+| --- | --- | --- |
+| **1,000 NEIRO every 30 days** | Exactly 1,000 NEIRO. No conversion or price API needed. | 1,000 NEIRO |
+| **$10 every 30 days** | The freshly quoted NEIRO equivalent of 10 USD | NEIRO |
+| **€10 or £10 every 30 days** | The freshly quoted NEIRO equivalent of 10 EUR or 10 GBP | NEIRO |
+
+Your customer approves a payment allowance in their wallet. When a bill is due, your app collects the NEIRO payment within that allowance. They do not need to approve every bill again.
+
+**The price currency and payment token are separate choices.** The price API supports 45 fiat currencies at the time of this guide. Select a supported `CURRENCY-NEIRO` pair and use its NEIRO amount. These examples always pay the merchant in NEIRO; the API's USDC equivalent is just another value in the response, not a USDC payment.
+
+[**Charge fixed NEIRO →**](docs/more-ways-to-charge.md#charge-the-same-neiro-amount-every-time) · [**Price in your currency →**](docs/currencies.md)
 
 ## Why NEIRO?
 
@@ -96,6 +108,8 @@ It takes you from the customer's approval through two payments at different pric
 Prefer to explore the underlying wallet flow first? Open the [**official Solana subscriptions demo**](https://solana-subscriptions-program.vercel.app/). It demonstrates the base subscriptions program; the dollar-priced NEIRO example is explained and tested here.
 
 ## Has this actually been tested?
+
+**The additional currency run passed 47 confirmed NEIRO transfers:** two fixed 1,000 NEIRO payments with no conversion, plus live-priced payments for all 45 supported fiat currencies. Each payment delivered NEIRO. [See the currency test results](evidence/multi-currency/summary.json) and [run it yourself](docs/currencies.md#test-the-currencies-in-surfpool).
 
 Yes. The recorded Surfpool run includes **16 confirmed NEIRO transfers** across the examples, including a payment calculated from a live NeiroPay quote. It checks that balances change correctly, payments respect allowances, and the collector can collect without a new customer signature. It also checks price changes, expired quotes, duplicate invoices and cancellation rules.
 

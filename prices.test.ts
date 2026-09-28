@@ -37,3 +37,15 @@ test("USD tiers and per-use prices use exact base units", () => {
   assert.equal(chargeAmount(p, 1000, 100000n * UNIT, 60, "25"), 50000n * UNIT);
   assert.equal(chargeAmount(p, 1000, 100000n * UNIT, 60, "0.25"), 500n * UNIT);
 });
+
+test("fiat quotes bind the requested currency and always select NEIRO, not USDC", () => {
+  const eur = { ...raw, pair: "EUR-NEIRO", input: {currency: "EUR", amount: "10"},
+    usdc: { baseUnits: "999999" } };
+  const q = validateConversion(eur, "10", 50000n * UNIT, now, "EUR");
+  assert.equal(q.currency, "EUR");
+  assert.equal(q.amount, 20000n * UNIT);
+  assert.equal(q.usd, undefined);
+  assert.throws(() => validateConversion(eur, "10", 50000n * UNIT, now, "GBP"));
+  assert.throws(() => validateConversion({...eur, token: {...eur.token, symbol: "USDC"}},
+    "10", 50000n * UNIT, now, "EUR"));
+});

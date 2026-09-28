@@ -7,7 +7,7 @@ import {
   fetchSubscriptionDelegation,
 } from "@solana/subscriptions";
 import { BillingLedger, chargeAmount, PERIOD, type Price } from "../billing.js";
-import { quoteUsd, assertQuoteUnexpired } from "../prices.js";
+import { quoteFiat, quoteUsd, assertQuoteUnexpired } from "../prices.js";
 import {
   fixture,
   mint,
@@ -344,6 +344,29 @@ async function liveNeiroPay() {
   );
 }
 
+// Live fiat prices, direct NEIRO settlement. Explicit opt-in network recipe.
+async function multiCurrency() {
+  await fixedNeiro(); // No conversion request in this fixed-token flow.
+  const response = await fetch("https://price.neiropay.app/supported-currencies");
+  assert.ok(response.ok, "Currency discovery failed");
+  const supported = await response.json() as { fiats: string[]; pairs: string[] };
+  assert.ok(Array.isArray(supported.fiats) && supported.fiats.length > 0);
+  for (const currency of supported.fiats) {
+    assert.ok(supported.pairs.includes(`${currency}-NEIRO`));
+    const f = await fixture(`fiat-${currency}`);
+    const cap = 100_000n * UNIT;
+    await f.recurring(cap, PERIOD);
+    // Space requests below the documented public rate limit.
+    await new Promise(resolve => setTimeout(resolve, 1200));
+    const quote = await quoteFiat(currency, "10", cap);
+    await f.send(await f.transfer(quote.amount), quote.amount,
+      () => assertQuoteUnexpired(quote));
+    results.push({ recipe: `fiat-${currency}`, outcome: "passed", ...quote,
+      amount: String(quote.amount), settlementToken: "NEIRO" });
+    console.log(`PASS 10 ${currency}: ${quote.amount} NEIRO base units received; no USDC transfer.`);
+  }
+}
+
 const selected = process.env.NEIRO_RECIPE ?? "all";
 const recipes: Record<string, () => Promise<void>> = {
   "fixed-neiro": fixedNeiro,
@@ -353,7 +376,9 @@ const recipes: Record<string, () => Promise<void>> = {
   "fixed-allowance": fixedAllowance,
   "native-plan": nativePlan,
 };
-if (selected === "all") {
+if (selected === "multi-currency") {
+  await multiCurrency();
+} else if (selected === "all") {
   for (const recipe of Object.values(recipes)) await recipe();
 } else {
   assert.ok(recipes[selected], `Unknown recipe ${selected}`);

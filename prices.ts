@@ -1,7 +1,9 @@
 import { fraction } from "./billing.js";
 /** NeiroPay's conversion is a quote, not a token swap. */
 export type Conversion = {
-  usd: string;
+  currency: string;
+  invoiceAmount: string;
+  usd?: string;
   amount: bigint;
   expiresAt: number;
   quotedAt: number;
@@ -10,14 +12,15 @@ export type Conversion = {
 };
 export function validateConversion(
   raw: any,
-  usd: string,
+  invoiceAmount: string,
   cap: bigint,
   now = Date.now(),
+  currency = "USD",
 ): Conversion {
-  const [n, d] = fraction(usd);
+  const [n, d] = fraction(invoiceAmount);
   if (
-    raw?.pair !== "USD-NEIRO" ||
-    raw?.input?.currency !== "USD" ||
+    raw?.pair !== `${currency}-NEIRO` ||
+    raw?.input?.currency !== currency ||
     raw?.token?.symbol !== "NEIRO" ||
     raw?.token?.decimals !== 6
   )
@@ -47,7 +50,9 @@ export function validateConversion(
   if (typeof raw.freshnessBasis !== "string")
     throw new Error("Missing freshness provenance");
   return {
-    usd,
+    currency,
+    invoiceAmount,
+    ...(currency === "USD" ? { usd: invoiceAmount } : {}),
     amount,
     expiresAt,
     quotedAt,
@@ -59,13 +64,23 @@ export function assertQuoteUnexpired(quote: Conversion, now = Date.now()) {
   if (now >= quote.expiresAt)
     throw new Error("Quote expired before submission; fetch a new quote");
 }
-export async function quoteUsd(usd: string, cap: bigint): Promise<Conversion> {
-  fraction(usd);
+export async function quoteFiat(
+  currency: string,
+  invoiceAmount: string,
+  cap: bigint,
+): Promise<Conversion> {
+  if (!/^[A-Z]{3}$/.test(currency))
+    throw new Error("Use an uppercase currency code");
+  fraction(invoiceAmount);
   const response = await fetch(
-    `https://price.neiropay.app/convert?${new URLSearchParams({ pair: "USD-NEIRO", input: usd })}`,
+    `https://price.neiropay.app/convert?${new URLSearchParams({ pair: `${currency}-NEIRO`, input: invoiceAmount })}`,
     { signal: AbortSignal.timeout(10000) },
   );
   if (!response.ok)
     throw new Error(`NeiroPay conversion unavailable: HTTP ${response.status}`);
-  return validateConversion(await response.json(), usd, cap);
+  return validateConversion(
+    await response.json(), invoiceAmount, cap, Date.now(), currency,
+  );
 }
+
+export const quoteUsd = (usd: string, cap: bigint) => quoteFiat("USD", usd, cap);

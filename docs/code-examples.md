@@ -27,6 +27,8 @@ NEIRO has six decimals: **1 NEIRO = 1,000,000 base units**. The `n` suffix means
 
 The adapter checks the response, amount, allowance and expiry. In a real collection, read the actual remaining allowance and check quote expiry again immediately before submitting the payment. An unavailable or expired quote should stop collection.
 
+For EUR, GBP, JPY and other supported fiat prices, use `quoteFiat(currency, amount, remainingAllowance)`. [See the currency examples](currencies.md). Settlement stays in NEIRO.
+
 ## 2. Or charge a fixed 1,000 NEIRO
 
 ```ts

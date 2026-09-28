@@ -1,0 +1,57 @@
+
+> solana-neiro-subscriptions@1.0.0 demo
+> node scripts/demo.mjs --recipe=multi-currency
+
+Starting an isolated local Surfpool instance…
+(node:68286) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+  PASS monthly NEIRO cap
+  PASS customer revoked
+PASS fixed NEIRO: 1,000 each month; cap, reset and revocation enforced.
+PASS 10 USD: 19817718102 NEIRO base units received; no USDC transfer.
+PASS 10 EUR: 22532937012 NEIRO base units received; no USDC transfer.
+PASS 10 GBP: 26272992313 NEIRO base units received; no USDC transfer.
+PASS 10 AUD: 13920847220 NEIRO base units received; no USDC transfer.
+PASS 10 NZD: 11231921897 NEIRO base units received; no USDC transfer.
+PASS 10 CAD: 13993587136 NEIRO base units received; no USDC transfer.
+PASS 10 CHF: 23826539225 NEIRO base units received; no USDC transfer.
+PASS 10 SEK: 1990157240 NEIRO base units received; no USDC transfer.
+PASS 10 NOK: 2081472220 NEIRO base units received; no USDC transfer.
+PASS 10 DKK: 3014422888 NEIRO base units received; no USDC transfer.
+PASS 10 PLN: 5154709415 NEIRO base units received; no USDC transfer.
+PASS 10 JPY: 125914688 NEIRO base units received; no USDC transfer.
+PASS 10 CNY: 2952271181 NEIRO base units received; no USDC transfer.
+PASS 10 HKD: 2526345679 NEIRO base units received; no USDC transfer.
+PASS 10 SGD: 15495909064 NEIRO base units received; no USDC transfer.
+PASS 10 TWD: 623027950 NEIRO base units received; no USDC transfer.
+PASS 10 KRW: 14562440 NEIRO base units received; no USDC transfer.
+PASS 10 PHP: 317068527 NEIRO base units received; no USDC transfer.
+PASS 10 IDR: 1098163 NEIRO base units received; no USDC transfer.
+PASS 10 THB: 589535240 NEIRO base units received; no USDC transfer.
+PASS 10 VND: 763062 NEIRO base units received; no USDC transfer.
+PASS 10 MYR: 4855259807 NEIRO base units received; no USDC transfer.
+PASS 10 INR: 194707494 NEIRO base units received; no USDC transfer.
+PASS 10 BDT: 160953388 NEIRO base units received; no USDC transfer.
+PASS 10 PKR: 71523063 NEIRO base units received; no USDC transfer.
+PASS 10 LKR: 59880964 NEIRO base units received; no USDC transfer.
+PASS 10 NPR: 129106121 NEIRO base units received; no USDC transfer.
+PASS 10 KZT: 45037829 NEIRO base units received; no USDC transfer.
+PASS 10 UZS: 1677290 NEIRO base units received; no USDC transfer.
+PASS 10 MNT: 7554292 NEIRO base units received; no USDC transfer.
+PASS 10 AED: 5396290146 NEIRO base units received; no USDC transfer.
+PASS 10 SAR: 5277036155 NEIRO base units received; no USDC transfer.
+PASS 10 QAR: 5436839392 NEIRO base units received; no USDC transfer.
+PASS 10 KWD: 64177185484 NEIRO base units received; no USDC transfer.
+PASS 10 BHD: 52572942512 NEIRO base units received; no USDC transfer.
+PASS 10 BRL: 3791340916 NEIRO base units received; no USDC transfer.
+PASS 10 MXN: 1110402927 NEIRO base units received; no USDC transfer.
+PASS 10 ARS: 12998368 NEIRO base units received; no USDC transfer.
+PASS 10 CLP: 20468830 NEIRO base units received; no USDC transfer.
+PASS 10 COP: 5894477 NEIRO base units received; no USDC transfer.
+PASS 10 PEN: 5801494634 NEIRO base units received; no USDC transfer.
+PASS 10 NGN: 14918766 NEIRO base units received; no USDC transfer.
+PASS 10 KES: 152745164 NEIRO base units received; no USDC transfer.
+PASS 10 EGP: 380343735 NEIRO base units received; no USDC transfer.
+PASS 10 ZAR: 1205276759 NEIRO base units received; no USDC transfer.
+ALL RECIPES PASSED (47 confirmed direct NEIRO transfers).
+Run files: work/demo-<generated>

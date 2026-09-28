@@ -57,6 +57,19 @@ Do not treat the local example as an already deployed service.
 
 The 50,000 NEIRO cap is a sample term. Change it to the allowance your customers agree to. Thirty days is a fixed interval; ask for calendar-month billing explicitly if that is your offer.
 
+## “Use euros, pounds or another supported currency”
+
+```text
+Use https://github.com/bropump/solana-neiro-subscriptions.
+Read AGENTS.md and docs/currencies.md. Build a 10 EUR every 30 days offer
+paid in NEIRO. Discover supported currencies from the price API and use
+quoteFiat for a fresh conversion on every due invoice. The transfer must
+use NEIRO token.baseUnits, never the USDC equivalent in the response.
+Also demonstrate fixed 1,000 NEIRO billing without calling the price API.
+Run the multi-currency Surfpool recipe and show the NEIRO balance proof.
+Keep customer limits, expiry checks and duplicate-invoice protection.
+```
+
 ## “I want a fixed NEIRO subscription instead”
 
 ```text

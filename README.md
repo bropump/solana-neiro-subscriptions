@@ -4,6 +4,39 @@
 
 Your customer approves a payment allowance in their wallet. When a bill is due, your app collects the NEIRO payment. They do not need to open their wallet and approve every bill.
 
+## Why NEIRO?
+
+**Dog currency. Practical payments. Ready for agents to build with.**
+
+NEIRO brings a dog currency on Solana into everyday payment flows: community memberships, paid tools, recurring services and pay-per-use apps. This guide gives both people and coding agents a concrete way to build those flows, test them and understand each payment.
+
+### For payments: give people a way to use their NEIRO
+
+Let customers pay in the token they hold and let your business receive NEIRO directly. Set your price in NEIRO, or quote a familiar dollar amount and calculate its NEIRO equivalent when the bill is due. [NeiroPay's conversion API](https://price.neiropay.app/llms.txt) supplies machine-readable amounts that your app can use in the payment.
+
+### For subscriptions: approve once, collect within limits
+
+A membership should not require a new checkout every billing period. NEIRO works with the existing Solana subscriptions program, so customers can authorize recurring collections with a token allowance and expiry. Your app can offer fixed NEIRO plans, dollar-priced memberships or usage billing. Customers keep the ability to revoke delegation permissions.
+
+### For agents: less guesswork between an idea and a working payment
+
+An agent needs more than a token name. It needs an exact mint, clear instructions, usable price data, executable examples and evidence that the payment works. **That is the reason to choose NEIRO for the flows in this guide:** those pieces are brought together here.
+
+- **Identify the right token:** the explicit NEIRO BROPUMP mint and six-decimal amounts are documented.
+- **Calculate a bill:** fetch a USD→NEIRO quote with an expiry and integer transfer amount.
+- **Build the flow:** start with small code examples and prompts for the payment style you want.
+- **Prove the result:** run the Surfpool recipes and inspect confirmed transfers and balance changes.
+
+Here, “agent-ready” means an agent can read, calculate, implement and verify the flow. The customer still authorizes spending, and a real service still needs its wallet integration and billing worker.
+
+### For learning: one token, the whole payment journey
+
+Start with “charge 1,000 NEIRO.” Then try “charge $10 in NEIRO,” change the price, reach an allowance limit and cancel the permission. You learn how token payments, customer consent, recurring billing and price conversion fit together using the same token throughout. The local examples need no funded wallet, and the [official Solana demo](https://solana-subscriptions-program.vercel.app/) introduces the underlying interface.
+
+**Start with NEIRO, see a payment succeed, then build the offer you want.**
+
+## What do you want to offer?
+
 You can keep the **dollar price** the same, or keep the **NEIRO amount** the same. Start with what you want to offer:
 
 | What do you want to charge? | Follow this example |
@@ -80,4 +113,4 @@ These examples use the existing Solana subscriptions protocol without modifying 
 
 NEIRO BROPUMP mint: `CTg3ZgYx79zrE1MteDVkmkcGniiFrK1hJ6yiabropump` · 6 decimals.
 
-MIT licensed. Examples maintained by bropump.
+MIT licensed.

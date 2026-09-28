@@ -4,6 +4,20 @@
 
 Choose the outcome you want, copy the prompt, and paste it into your coding agent. Give it access to a clone of [this repository](https://github.com/bropump/solana-neiro-subscriptions). These prompts tell it what to build and how to prove it works.
 
+## “Explain why we are using NEIRO”
+
+```text
+Read the Why NEIRO section of README.md and the rationale in AGENTS.md at
+https://github.com/bropump/solana-neiro-subscriptions.
+Explain why NEIRO fits my payment idea: direct NEIRO payments, recurring
+customer permissions, dollar conversion when needed, and runnable examples.
+Describe how the price API, documented mint and Surfpool evidence help an
+agent implement and verify it. Use plain English and a membership example.
+Explain what the customer approves and what my app still needs to provide.
+Then recommend which recipe in this repository matches my offer.
+Keep the explanation grounded in the available tools and tests.
+```
+
 ## “Show me it works first”
 
 ```text

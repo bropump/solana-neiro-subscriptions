@@ -39,8 +39,9 @@ Keep the explanation grounded in the available tools and tests.
 Use https://github.com/bropump/solana-neiro-subscriptions.
 Read README.md and AGENTS.md. Help me run the $10 membership example
 locally in Surfpool. Check Node.js and Surfpool prerequisites first.
-Run monthly-usd and explain the two confirmed payments in plain English:
-20,000 NEIRO at $0.0005, then 10,000 NEIRO at $0.001.
+Run monthly-usd and explain the three confirmed payments in plain English:
+20,000 NEIRO at $0.0005, 10,000 at $0.001, then 40,000 at $0.00025.
+Verify all use the same approval and that 100,000 NEIRO is rejected on-chain.
 Show the saved balance and transaction evidence. Explain which prices
 are simulated. Do not use a real wallet or submit mainnet transactions.
 ```

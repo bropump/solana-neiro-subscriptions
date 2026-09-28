@@ -83,6 +83,6 @@ With Surfpool installed:
 npm run demo -- --recipe=monthly-usd
 ```
 
-This executes and verifies two payments with controlled prices. To add a payment based on a live conversion, run `npm run demo:live`. Both commands use local funds only.
+This executes and verifies three payments with controlled prices, including a price drop that increases the charge to 40,000 NEIRO. To add a payment based on a live conversion, run `npm run demo:live`. Both commands use local funds only.
 
 [See the customer journey](walkthrough.md) · [Build it with an agent](agent-prompts.md) · [Connect a real app](setup-checklist.md)

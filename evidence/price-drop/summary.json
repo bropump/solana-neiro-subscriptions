@@ -1,0 +1,27 @@
+{
+  "mint": "CTg3ZgYx79zrE1MteDVkmkcGniiFrK1hJ6yiabropump",
+  "results": [
+    {
+      "recipe": "monthly-usd",
+      "outcome": "passed",
+      "usd": "10",
+      "prices": [
+        "0.0005",
+        "0.001",
+        "0.00025"
+      ],
+      "chargesNEIRO": [
+        "20000",
+        "10000",
+        "40000"
+      ],
+      "sameApproval": true,
+      "capNEIRO": "50000",
+      "onChainRejectedNEIRO": [
+        "11000 after 40000 in same period",
+        "100000 in fresh period"
+      ]
+    }
+  ],
+  "confirmedTransfers": 3
+}

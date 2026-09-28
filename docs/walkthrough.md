@@ -4,7 +4,7 @@
 
 Suppose you run a members-only community. You want membership to cost **$10 every 30 days**, and you want to receive **NEIRO**. Your members should approve the arrangement once, then have payments collected when due.
 
-By the end of this tutorial, you will understand what the member approves and run an example that collects two $10 payments at different NEIRO prices.
+By the end of this tutorial, you will understand what the member approves and run an example that collects three $10 payments at different NEIRO prices.
 
 **Prefer to build with an agent?** [Copy the $10 membership prompt](agent-prompts.md#build-a-10-membership-for-my-app). Want to see the interface first? [Tour the official demo screenshots](portal-tour.md).
 
@@ -60,6 +60,12 @@ This time you collect **10,000 NEIRO**. You do not reuse last period's token amo
 
 The dollar amount is a valuation at collection time. You hold NEIRO after receiving it, so its value may subsequently rise or fall.
 
+### If the price drops, collect more NEIRO within the same approval
+
+In the following period, at **$0.00025 per NEIRO**, $10 requires **40,000 NEIRO**. The same 50,000 NEIRO-per-period approval permits that payment; the customer does not need to sign again.
+
+At **$0.0001**, $10 would require **100,000 NEIRO**. That exceeds the cap. Both the example's billing check and the Solana program reject it. A higher limit would require the customer's authorization.
+
 ## 5. Know when a payment should stop
 
 - **The required amount exceeds the allowance:** skip the charge. Do not collect a partial membership fee automatically. Ask the customer to approve different terms if needed.
@@ -69,7 +75,7 @@ The dollar amount is a valuation at collection time. You hold NEIRO after receiv
 
 Solana enforces the token allowance and permission. Your app enforces the $10 price, billing schedule and one payment per invoice. The permission alone does not make Solana wake up each month and charge $10.
 
-## 6. Try the two payments on your computer
+## 6. Try the three payments on your computer
 
 Install [Node.js 24 or later](https://nodejs.org/en/download) and [Surfpool](https://docs.surfpool.run/) first. Surfpool is the local Solana test environment; these examples were tested with version 1.5.0.
 
@@ -90,13 +96,16 @@ The example simulates the passage of time, so you do not have to wait a month. I
 | --- | --- |
 | Collect $10 at $0.0005 per NEIRO | 20,000 NEIRO transferred |
 | Advance to the next period; collect $10 at $0.001 | 10,000 NEIRO transferred |
+| Advance again; collect $10 at $0.00025 | 40,000 NEIRO transferred under the same approval |
+| Try to collect another 11,000 NEIRO in that period | Rejected on-chain: only 10,000 remains |
+| Directly attempt 100,000 NEIRO in a fresh period | Rejected on-chain: the period cap is 50,000 |
 | Try to charge the same invoice again | Blocked by the billing ledger |
 | Use an old price | Rejected |
 | Attempt a $10 charge needing 100,000 NEIRO | Rejected because it exceeds the 50,000 NEIRO cap |
 
 These are controlled test prices, which make the outcome repeatable. The command prints the location of your run's results in `work/demo-...`. Open `summary.json` for the results and `proof.json` for transactions and balance checks. Local transactions do not appear in a public Solana explorer.
 
-[View the saved results from our recorded run](../evidence/summary.json).
+[View the three-period test results](../evidence/price-drop/summary.json) or [inspect the transactions and rejected attempts](../evidence/price-drop/proof.json).
 
 ## 7. Try a current price
 

@@ -68,6 +68,7 @@ async function monthlyUsd() {
     for (const [i, p, expected] of [
       [0, "0.0005", 20000n],
       [1, "0.001", 10000n],
+      [2, "0.00025", 40000n],
     ] as const) {
       if (i) await f.advance(PERIOD + 1n);
       const now = await chainTime();
@@ -89,7 +90,17 @@ async function monthlyUsd() {
         /already/,
       );
     }
+    await f.reject(
+      "on-chain remaining allowance after 40,000 NEIRO charge",
+      async () => f.send(await f.transfer(11000n * UNIT), 11000n * UNIT),
+      /400|0x190/,
+    );
     await f.advance(PERIOD + 1n);
+    await f.reject(
+      "on-chain 100,000 NEIRO exceeds fresh 50,000 period cap",
+      async () => f.send(await f.transfer(100000n * UNIT), 100000n * UNIT),
+      /400|0x190/,
+    );
     const now = await chainTime();
     await f.reject(
       "stale dollar price",
@@ -118,11 +129,14 @@ async function monthlyUsd() {
     recipe: "monthly-usd",
     outcome: "passed",
     usd: "10",
-    prices: ["0.0005", "0.001"],
-    chargesNEIRO: ["20000", "10000"],
+    prices: ["0.0005", "0.001", "0.00025"],
+    chargesNEIRO: ["20000", "10000", "40000"],
+    sameApproval: true,
+    capNEIRO: "50000",
+    onChainRejectedNEIRO: ["11000 after 40000 in same period", "100000 in fresh period"],
   });
   console.log(
-    "PASS monthly USD: $10 pulls 20,000 then 10,000 NEIRO as price doubles.",
+    "PASS monthly USD: same approval pulls 20,000, 10,000, then 40,000 NEIRO; on-chain cap rejects excess.",
   );
 }
 

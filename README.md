@@ -1,5 +1,24 @@
 # Solana subscriptions: charge monthly in NEIRO
 
+## Start here: copy a prompt for your agent
+
+**[All agent prompts →](docs/agent-prompts.md)** · **[Agent instructions →](AGENTS.md)**
+
+```text
+Use https://github.com/bropump/solana-neiro-subscriptions.
+Read AGENTS.md and the learning guide. Teach me Solana subscriptions
+using NEIRO, then run fixed-neiro and monthly-usd in Surfpool.
+Show fixed 1,000 NEIRO payments and $10 payments that change from
+20,000 to 10,000 to 40,000 NEIRO under the same customer approval.
+Verify that a 100,000 NEIRO pull exceeds the 50,000 period cap and fails.
+Explain the customer permission, scheduling and cancellation.
+Keep all test payments local and show the confirmed balance evidence.
+```
+
+**Built using [Solana Subscriptions](https://solana.com/docs/payments/subscriptions/overview)** and its existing [recurring delegations](https://solana.com/docs/payments/subscriptions/recurring-delegation). These examples use that protocol without modifying it. [Open the official subscriptions demo](https://solana-subscriptions-program.vercel.app/).
+
+## Learn monthly payments with NEIRO
+
 **Learn how to build recurring payments on Solana, from a customer's first approval to their next monthly payment. Use NEIRO at every step.**
 
 Want to charge **1,000 NEIRO a month** for your community, app or service? Your customer approves a recurring allowance, your billing app collects when payment is due, and **you receive NEIRO directly in your wallet**. The customer does not need to approve every bill again.
@@ -85,20 +104,6 @@ You can keep the **price in a supported fiat currency** the same, or keep the **
 
 **[Follow the $10 tutorial](docs/walkthrough.md)** · **[Copy an agent prompt](docs/agent-prompts.md)** · **[See small code examples](docs/code-examples.md)**
 
-### Want an agent to show you right now?
-
-Copy this:
-
-```text
-Use https://github.com/bropump/solana-neiro-subscriptions.
-Read README.md, AGENTS.md and docs/learn-solana-subscriptions.md.
-Teach me Solana subscriptions using fixed-neiro in Surfpool first.
-Show two 1,000 NEIRO payments, the period limit and cancellation.
-Then explain how to charge $10 or EUR 10 while still receiving NEIRO.
-Explain the customer's approval and show the confirmed balance changes.
-Keep all transfers local; no real wallet or funds.
-```
-
 ## What happens to a $10 subscription when NEIRO's price changes?
 
 Imagine someone joins your community. Your price is $10 per billing period.
@@ -107,6 +112,7 @@ Imagine someone joins your community. Your price is $10 per billing period.
 | --- | ---: | ---: | ---: |
 | First period | $0.0005 | 20,000 NEIRO | 20,000 NEIRO |
 | Next period | $0.001 | 10,000 NEIRO | 10,000 NEIRO |
+| Following period, price falls | $0.00025 | 40,000 NEIRO | 40,000 NEIRO |
 
 **Same $10 bill. A different NEIRO amount each time.** Your app gets a fresh conversion when collecting each bill, using [NeiroPay's price service](https://price.neiropay.app/llms.txt). These table prices are illustrative.
 
@@ -122,11 +128,13 @@ The customer can revoke the permission to stop future collections. The Solana pr
 
 [**Follow the $10 membership tutorial →**](docs/walkthrough.md)
 
-It takes you from the customer's approval through two payments at different prices, then shows you how to reproduce them locally. The examples use **Surfpool**, which runs Solana locally, so you can try them without a funded wallet or real payments.
+It takes you from the customer's approval through three payments at different prices, then shows you how to reproduce them locally. The examples use **Surfpool**, which runs Solana locally, so you can try them without a funded wallet or real payments.
 
 Prefer to explore the underlying wallet flow first? Open the [**official Solana subscriptions demo**](https://solana-subscriptions-program.vercel.app/). It demonstrates the base subscriptions program; the dollar-priced NEIRO example is explained and tested here.
 
 ## Has this actually been tested?
+
+**Price-drop test:** the same approval collected 20,000, 10,000 and then 40,000 NEIRO across three periods. The program rejected a 100,000 NEIRO pull against the 50,000 cap, even when bypassing the app's price check. [See the recorded proof](evidence/price-drop/proof.json).
 
 **The additional currency run passed 47 confirmed NEIRO transfers:** two fixed 1,000 NEIRO payments with no conversion, plus live-priced payments for all 45 supported fiat currencies. Each payment delivered NEIRO. [See the currency test results](evidence/multi-currency/summary.json) and [run it yourself](docs/currencies.md#test-the-currencies-in-surfpool).
 

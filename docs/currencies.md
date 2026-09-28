@@ -56,7 +56,7 @@ USD, EUR, GBP, AUD, NZD, CAD, CHF, SEK, NOK, DKK, PLN, JPY, CNY, HKD, SGD, TWD, 
 
 ## Test the currencies in Surfpool
 
-After the [first-time setup](walkthrough.md#6-try-the-two-payments-on-your-computer), run:
+After the [first-time setup](walkthrough.md#6-try-the-three-payments-on-your-computer), run:
 
 ```sh
 npm run demo -- --recipe=multi-currency

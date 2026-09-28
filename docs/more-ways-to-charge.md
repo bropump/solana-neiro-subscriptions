@@ -1,6 +1,6 @@
 # Choose how you want to get paid
 
-[← Start here](../README.md) · [First-time setup](walkthrough.md#6-try-the-two-payments-on-your-computer)
+[← Start here](../README.md) · [First-time setup](walkthrough.md#6-try-the-three-payments-on-your-computer)
 
 Not every service needs a $10 monthly membership. Here are five other offers you can make using NEIRO, with a local example for each. Run these commands from the repository folder after completing the setup in the tutorial.
 

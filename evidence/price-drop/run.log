@@ -1,0 +1,17 @@
+
+> solana-neiro-subscriptions@1.0.0 demo
+> node scripts/demo.mjs --recipe=monthly-usd
+
+Starting an isolated local Surfpool instance…
+(node:77863) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+  PASS same invoice cannot charge twice
+  PASS same invoice cannot charge twice
+  PASS same invoice cannot charge twice
+  PASS on-chain remaining allowance after 40,000 NEIRO charge
+  PASS on-chain 100,000 NEIRO exceeds fresh 50,000 period cap
+  PASS stale dollar price
+  PASS USD invoice over NEIRO cap
+PASS monthly USD: same approval pulls 20,000, 10,000, then 40,000 NEIRO; on-chain cap rejects excess.
+ALL RECIPES PASSED (3 confirmed direct NEIRO transfers).
+Run files: work/demo-<generated>

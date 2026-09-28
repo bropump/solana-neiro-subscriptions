@@ -49,6 +49,8 @@ For fixed 1,000 NEIRO, use `1_000n * 1_000_000n` directly: no conversion API is 
 
 ## Writing for humans
 
+Keep copyable agent prompts at the top of README.md and prominently link the official Solana Subscriptions overview. The monthly-usd recipe must cover price rises and falls under the same approval, plus direct on-chain rejection above the cap.
+
 Lead with what someone wants to sell, what the customer agrees to, and what happens when a payment is due. Explain the outcome before introducing commands or SDK names. Keep the front page a guide; put implementation details in docs/developer-reference.md. Preserve the distinction between a runnable local example and a deployed customer service.
 
 ## Preserve these properties

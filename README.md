@@ -2,17 +2,27 @@
 
 ## Start here: copy a prompt for your agent
 
-**[All agent prompts →](docs/agent-prompts.md)** · **[Agent instructions →](AGENTS.md)**
+Paste this into your coding agent. It will help you learn, choose your own payment terms and test your setup.
+
+**[More agent prompts →](docs/agent-prompts.md)** · **[Agent instructions →](AGENTS.md)**
 
 ```text
-Use https://github.com/bropump/solana-neiro-subscriptions.
-Read AGENTS.md and the learning guide. Teach me Solana subscriptions
-using NEIRO, then run fixed-neiro and monthly-usd in Surfpool.
-Show fixed 1,000 NEIRO payments and $10 payments that change from
-20,000 to 10,000 to 40,000 NEIRO under the same customer approval.
-Verify that a 100,000 NEIRO pull exceeds the 50,000 period cap and fails.
-Explain the customer permission, scheduling and cancellation.
-Keep all test payments local and show the confirmed balance evidence.
+Help me learn Solana subscriptions and set up my own way to accept NEIRO.
+Use this recipe: https://github.com/bropump/solana-neiro-subscriptions
+and the official Solana Subscriptions docs:
+https://solana.com/docs/payments/subscriptions/overview
+
+1. Explain simply how customers approve payments and how I receive NEIRO.
+2. Ask what I am selling, how much I want to charge and how often.
+   Help me choose fixed NEIRO, a price in a supported currency paid in
+   NEIRO, or pay-per-use. Let me choose the terms rather than assuming them.
+3. Walk me through the matching example, explain the spending limit and
+   cancellation, and adapt it to my choices using the existing protocol.
+4. Test it locally in Surfpool and show that I receive the right NEIRO amount.
+5. Explain what I still need to connect real customers and run the billing.
+
+Read AGENTS.md first. Keep it beginner-friendly, one step at a time.
+Use local test funds while learning and never ask me to paste private keys.
 ```
 
 **Built using [Solana Subscriptions](https://solana.com/docs/payments/subscriptions/overview)** and its existing [recurring delegations](https://solana.com/docs/payments/subscriptions/recurring-delegation). These examples use that protocol without modifying it. [Open the official subscriptions demo](https://solana-subscriptions-program.vercel.app/).

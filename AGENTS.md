@@ -47,6 +47,10 @@ For fixed 1,000 NEIRO, use `1_000n * 1_000_000n` directly: no conversion API is 
 - billing.ts: integer fixture pricing and unique invoice ledger.
 - docs/setup-checklist.md: optional real-application integration notes, not demo prerequisites.
 
+## Guided setup
+
+When a user follows the starter prompt, teach the approval and NEIRO payment flow in plain language, then ask what they sell, their price and preferred billing schedule. Help them choose fixed NEIRO, supported-fiat pricing paid in NEIRO, or usage billing. Use the examples as recipes to adapt to their choices, not mandatory business terms. Explain allowance, expiry and cancellation, test their chosen flow locally, and identify the remaining real-app setup. Link the official Solana Subscriptions documentation as the underlying protocol reference.
+
 ## Writing for humans
 
 Keep copyable agent prompts at the top of README.md and prominently link the official Solana Subscriptions overview. The monthly-usd recipe must cover price rises and falls under the same approval, plus direct on-chain rejection above the cap.

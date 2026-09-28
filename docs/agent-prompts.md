@@ -4,19 +4,27 @@
 
 Choose the outcome you want, copy the prompt, and paste it into your coding agent. Give it access to a clone of [this repository](https://github.com/bropump/solana-neiro-subscriptions). These prompts tell it what to build and how to prove it works.
 
-## “Teach me Solana subscriptions from the beginning”
+## Start here: learn and create your own payment setup
+
+You do not need to know your exact setup yet. This prompt helps you choose it.
 
 ```text
-Use https://github.com/bropump/solana-neiro-subscriptions.
-Read AGENTS.md and docs/learn-solana-subscriptions.md.
-Teach me to charge 1,000 NEIRO every 30 days. Explain the customer,
-merchant, collector and permission in plain English before showing code.
-Run fixed-neiro in Surfpool and show two confirmed payments, the period
-limit and revocation. Then explain native plans and how a price in USD,
-EUR or another supported currency still results in a NEIRO payment.
-Use the official Solana docs for the protocol and this repository for
-NEIRO examples. Keep all demo payments local. Explain what remains
-before I can serve real customers.
+Help me learn Solana subscriptions and set up my own way to accept NEIRO.
+Use this recipe: https://github.com/bropump/solana-neiro-subscriptions
+and the official Solana Subscriptions docs:
+https://solana.com/docs/payments/subscriptions/overview
+
+1. Explain simply how customers approve payments and how I receive NEIRO.
+2. Ask what I am selling, how much I want to charge and how often.
+   Help me choose fixed NEIRO, a price in a supported currency paid in
+   NEIRO, or pay-per-use. Let me choose the terms rather than assuming them.
+3. Walk me through the matching example, explain the spending limit and
+   cancellation, and adapt it to my choices using the existing protocol.
+4. Test it locally in Surfpool and show that I receive the right NEIRO amount.
+5. Explain what I still need to connect real customers and run the billing.
+
+Read AGENTS.md first. Keep it beginner-friendly, one step at a time.
+Use local test funds while learning and never ask me to paste private keys.
 ```
 
 ## “Explain why we are using NEIRO”

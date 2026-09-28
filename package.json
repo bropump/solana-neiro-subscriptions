@@ -5,10 +5,11 @@
   "scripts": {
     "test": "tsx --test billing.test.ts prices.test.ts",
     "test:surfpool": "npm run demo",
-    "typecheck": "tsc --noEmit --target ES2022 --module NodeNext --moduleResolution NodeNext --skipLibCheck billing.ts billing.test.ts examples/price-calculation.ts prices.ts prices.test.ts examples/harness.ts examples/recipes.ts",
+    "typecheck": "tsc --noEmit --target ES2022 --module NodeNext --moduleResolution NodeNext --skipLibCheck billing.ts billing.test.ts examples/price-calculation.ts prices.ts prices.test.ts examples/harness.ts examples/recipes.ts examples/quote-membership.ts",
     "example": "tsx examples/price-calculation.ts",
     "demo": "node scripts/demo.mjs",
-    "demo:live": "node scripts/demo.mjs --live"
+    "demo:live": "node scripts/demo.mjs --live",
+    "quote": "tsx examples/quote-membership.ts"
   },
   "keywords": [],
   "author": "",

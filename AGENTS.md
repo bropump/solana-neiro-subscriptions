@@ -11,7 +11,7 @@ Conversion API: https://price.neiropay.app/llms.txt
 
 ## Run
 
-1. Read README.md and docs/walkthrough.md.
+1. Read README.md and docs/walkthrough.md for the customer journey, then docs/developer-reference.md for SDK calls.
 2. `npm ci`, `npm run example`, `npm test`, `npm run typecheck`.
 3. With Surfpool on PATH, run `npm run demo`; it manages an isolated localhost instance.
 4. `npm run demo -- --recipe=fixed-neiro` runs one named recipe.
@@ -25,6 +25,10 @@ Conversion API: https://price.neiropay.app/llms.txt
 - prices.ts: USD→NEIRO quote validation, base units and expiry.
 - billing.ts: integer fixture pricing and unique invoice ledger.
 - docs/setup-checklist.md: optional real-application integration notes, not demo prerequisites.
+
+## Writing for humans
+
+Lead with what someone wants to sell, what the customer agrees to, and what happens when a payment is due. Explain the outcome before introducing commands or SDK names. Keep the front page a guide; put implementation details in docs/developer-reference.md. Preserve the distinction between a runnable local example and a deployed customer service.
 
 ## Preserve these properties
 

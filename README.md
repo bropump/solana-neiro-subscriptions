@@ -1,117 +1,83 @@
-# Solana subscriptions with NEIRO
+# Get paid in NEIRO, on a schedule
 
-**Working recipes for recurring payments in NEIRO. Run them locally in two commands.**
+**Want to charge $10 a month for your community, app or service—and let people pay in NEIRO? This guide shows you how.**
 
-Charge fixed NEIRO, a fixed USD price converted to NEIRO each period, or metered usage. These examples use the existing Solana Subscriptions program. Customers pay NEIRO directly to merchants—no swaps or USDC approvals.
+Your customer approves a payment allowance in their wallet. When a bill is due, your app collects the NEIRO payment. They do not need to open their wallet and approve every bill.
 
-[Official Solana subscriptions demo](https://solana-subscriptions-program.vercel.app/) · [Solana docs](https://solana.com/docs/payments/subscriptions/overview) · [NeiroPay conversions](https://price.neiropay.app/llms.txt)
+You can keep the **dollar price** the same, or keep the **NEIRO amount** the same. Start with what you want to offer:
 
-## Get running
+| What do you want to charge? | Follow this example |
+| --- | --- |
+| **“My membership costs $10 a month.”** | [Charge $10, paid in the current amount of NEIRO](docs/walkthrough.md) |
+| **“Membership costs 1,000 NEIRO each month.”** | [Keep the NEIRO amount fixed](docs/more-ways-to-charge.md#charge-the-same-neiro-amount-every-time) |
+| **“I want a weekly pass or a longer membership.”** | [Choose another dollar price and schedule](docs/more-ways-to-charge.md#choose-another-price-or-schedule) |
+| **“Customers pay for what they use.”** | [Charge $0.25 per use](docs/more-ways-to-charge.md#charge-for-usage) |
+| **“Customers approve a budget I can collect in parts.”** | [Use a limited NEIRO allowance](docs/more-ways-to-charge.md#collect-from-a-limited-budget) |
+| **“I want a NEIRO plan people can subscribe to.”** | [Create a subscription plan](docs/more-ways-to-charge.md#create-a-plan-people-can-subscribe-to) |
 
-Install **Node.js 24+** and **[Surfpool](https://docs.surfpool.run/)** (tested with 1.5.0). Clone this repository, then:
+## See the screens, then try your own example
 
-```sh
-git clone https://github.com/bropump/solana-neiro-subscriptions.git
-cd solana-neiro-subscriptions
-npm ci
-npm run demo
-```
+[![Official Solana subscriptions demo navigation](docs/images/official-demo-menu.png)](docs/portal-tour.md)
 
-No wallet, API key or real funds needed. Internet access is needed to fork mainnet accounts. The command starts its own local Surfpool, runs every recipe, saves transaction proof and stops its instance automatically.
+*The official demo's menu, before connecting a wallet. [Take the screenshot tour →](docs/portal-tour.md)*
 
-## Pick a recipe
+**[Follow the $10 tutorial](docs/walkthrough.md)** · **[Copy an agent prompt](docs/agent-prompts.md)** · **[See small code examples](docs/code-examples.md)**
 
-| Recipe            | Example                                      | What changes?                                    |
-| ----------------- | -------------------------------------------- | ------------------------------------------------ |
-| `fixed-neiro`     | 1,000 NEIRO every 30 days                    | Token amount stays fixed                         |
-| `monthly-usd`     | $10 every 30 days, paid in NEIRO             | Token amount changes with price                  |
-| `usd-schedules`   | $3 every 7 days; $25 every 90 days           | USD price and period are configurable            |
-| `metered-usd`     | $0.25 per usage event                        | Each event charges NEIRO under a daily cap       |
-| `fixed-allowance` | 3,000 NEIRO total, collected in installments | Remaining allowance decreases; no periodic reset |
-| `native-plan`     | Published 1,000-NEIRO / 30-day plan          | Customer subscribes to merchant's on-chain terms |
+### Want an agent to show you right now?
 
-Run one recipe:
-
-```sh
-npm run demo -- --recipe=monthly-usd
-npm run demo -- --recipe=fixed-neiro
-npm run demo -- --recipe=native-plan
-```
-
-[See all runnable recipes](examples/recipes.ts) · [Read the short walkthrough](docs/walkthrough.md) · [Agent instructions](AGENTS.md)
-
-## USD-priced NEIRO: how it works
+Copy this:
 
 ```text
-Customer approves a NEIRO cap once
-→ billing worker gets a USD→NEIRO quote when payment is due
-→ existing transferRecurring pulls that NEIRO amount
-→ merchant receives NEIRO
+Use https://github.com/bropump/solana-neiro-subscriptions.
+Read README.md and AGENTS.md. Run the monthly-usd example in Surfpool.
+Show me how $10 collects 20,000 NEIRO at one price and 10,000 at another.
+Explain the customer's approval and show the confirmed balance changes.
+Keep all transfers local; no real wallet or funds.
 ```
 
-For a $10 invoice:
+## What happens to a $10 subscription when NEIRO's price changes?
 
-| Price per NEIRO | NEIRO charged |
-| --------------: | ------------: |
-|         $0.0005 |        20,000 |
-|          $0.001 |        10,000 |
-|        $0.00025 |        40,000 |
+Imagine someone joins your community. Your price is $10 per billing period.
 
-Those are illustrative fixture prices. A new quote is used for each live invoice. The dollar valuation is taken at billing time; the merchant's NEIRO can change in value afterward.
+| When the bill is due | Example NEIRO price | Customer pays | You receive |
+| --- | ---: | ---: | ---: |
+| First period | $0.0005 | 20,000 NEIRO | 20,000 NEIRO |
+| Next period | $0.001 | 10,000 NEIRO | 10,000 NEIRO |
 
-## Use price.neiropay.app
+**Same $10 bill. A different NEIRO amount each time.** Your app gets a fresh conversion when collecting each bill, using [NeiroPay's price service](https://price.neiropay.app/llms.txt). These table prices are illustrative.
 
-```sh
-curl 'https://price.neiropay.app/convert?pair=USD-NEIRO&input=10'
-```
+You receive NEIRO directly. Its dollar value can change after you receive it. In these examples, a “month” is **30 days**.
 
-Use **`token.baseUnits`** as the transfer amount and respect **`expiresAt`**. The service converts the quote, not the tokens. Our [adapter](prices.ts) validates the currency, token, decimals, invoice amount, cap and expiry.
+## What does the customer agree to?
 
-```ts
-const quote = await quoteUsd("10", remainingNeiroAllowance);
-// Build the existing transferRecurring instruction with amount: quote.amount.
-// Check immediately before submitting the signed transaction:
-assertQuoteUnexpired(quote);
-```
+For the $10 example, they approve a maximum NEIRO allowance per period—say, 50,000 NEIRO. Your app charges the quoted amount for $10 within that allowance. If $10 would require more than the allowance, the payment is skipped; the customer would need to approve a higher limit to continue at that price.
 
-Run the optional live conversion test (still only local token transfers):
+The customer can revoke the permission to stop future collections. The Solana program enforces the NEIRO allowance; your billing app is responsible for charging the agreed dollar price only once per bill. The customer therefore trusts your collector within the approved allowance.
 
-```sh
-npm run demo:live
-```
+## See it happen yourself
 
-NeiroPay's expiry measures **upstream-fetch freshness**, not a verified last-trade timestamp. This example explicitly accepts that quote policy. Expired/unavailable conversions fail; they are never silently replaced by fake live prices. The default suite uses labelled price fixtures so its pricing results are reproducible.
+[**Follow the $10 membership tutorial →**](docs/walkthrough.md)
 
-## Tested in Surfpool
+It takes you from the customer's approval through two payments at different prices, then shows you how to reproduce them locally. The examples use **Surfpool**, which runs Solana locally, so you can try them without a funded wallet or real payments.
 
-The recorded all-recipes run passed **16 confirmed direct NEIRO transfers**, including a live $10 conversion into **19,817.718102 NEIRO**. Tests verify balances, transfer mint/destination, and that only the collector signs each collection. They also cover period resets, caps, stale/expired quotes, duplicate invoices, revocation and native-plan destination/cancellation rules.
+Prefer to explore the underlying wallet flow first? Open the [**official Solana subscriptions demo**](https://solana-subscriptions-program.vercel.app/). It demonstrates the base subscriptions program; the dollar-priced NEIRO example is explained and tested here.
 
-[Results summary](evidence/summary.json) · [Transaction proof](evidence/proof.json) · [Run log](evidence/run.log)
+## Has this actually been tested?
 
-The mint and deployed program are real mainnet accounts forked into Surfpool. Starting funds, wallets and time travel are local fixtures. No mainnet funds move. Local signatures will not appear in public explorers. Each new run writes its own proof under the printed `work/demo-...` folder.
+Yes. The recorded Surfpool run includes **16 confirmed NEIRO transfers** across the examples, including a payment calculated from a live NeiroPay quote. It checks that balances change correctly, payments respect allowances, and the collector can collect without a new customer signature. It also checks price changes, expired quotes, duplicate invoices and cancellation rules.
 
-## Useful commands
+The tests use the real NEIRO mint and deployed Solana subscriptions program copied into a local test network. Test wallets, balances and time are simulated. [See the results](evidence/summary.json) or [inspect the transaction proof](evidence/proof.json).
 
-```sh
-npm run example     # Three USD→NEIRO calculations, no Surfpool needed
-npm test            # Pricing, quote-validation and invoice tests
-npm run typecheck   # Type-check all examples
-```
+## Ready to put this in your own app?
 
-## What to adapt for your app
+This is a working tutorial with runnable examples. To serve real customers, connect your wallet signup, a scheduled billing worker and payment storage. [The integration guide](docs/setup-checklist.md) explains that next step.
 
-Customers sign approval once; the collector signs each pull. Your worker must schedule charges. The protocol enforces **NEIRO limits**; your backend enforces **USD pricing and unique invoices**. Native plans define NEIRO terms on-chain; a fixed delegation is a finite allowance, not an automatic subscription.
+- **Building it yourself?** Start with the [tutorial](docs/walkthrough.md), then the [code reference](docs/developer-reference.md).
+- **Asking an agent to build it?** Give it this repository and [the agent instructions](AGENTS.md).
+- **Want to understand the protocol?** Read the [Solana subscriptions documentation](https://solana.com/docs/payments/subscriptions/overview).
 
-“Monthly” here means 30 days. To use real customer wallets, connect signup, signing, scheduling and durable transaction recovery. [Integration notes](docs/setup-checklist.md) explain those steps without changing the protocol. The collector is trusted within the customer-approved cap.
+These examples use the existing Solana subscriptions protocol without modifying it.
 
-**NEIRO BROPUMP mint:** `CTg3ZgYx79zrE1MteDVkmkcGniiFrK1hJ6yiabropump` (6 decimals).
+NEIRO BROPUMP mint: `CTg3ZgYx79zrE1MteDVkmkcGniiFrK1hJ6yiabropump` · 6 decimals.
 
-## References
-
-- [Official Solana subscriptions demo](https://solana-subscriptions-program.vercel.app/)
-- [Recurring delegations](https://solana.com/docs/payments/subscriptions/recurring-delegation)
-- [Fixed allowances](https://solana.com/docs/payments/subscriptions/fixed-delegation)
-- [Native subscription plans](https://solana.com/docs/payments/subscriptions/subscription-plan)
-- [NeiroPay conversion API](https://price.neiropay.app/llms.txt)
-
-MIT licensed. Examples maintained by bropump; not an official Solana SDK.
+MIT licensed. Examples maintained by bropump.

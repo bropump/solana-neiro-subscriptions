@@ -24,6 +24,8 @@ Choose the relevant recipe and demonstrate it. Keep explanations focused on the 
 
 ## Price currency versus payment token
 
+Explain this first: the merchant receives NEIRO and the customer spends NEIRO. The 45 supported fiat currencies are pricing denominations, not fiat payment methods. Show several currency examples instead of presenting USD as the only option. Fixed NEIRO amounts need no conversion.
+
 For fixed 1,000 NEIRO, use `1_000n * 1_000_000n` directly: no conversion API is needed. For a fiat-denominated invoice, use `quoteFiat(currency, invoiceAmount, remainingAllowance)` from prices.ts. Supported fiat codes and pairs come from price.neiropay.app/supported-currencies. Use only the quoted NEIRO `token.baseUnits`; a response's USDC equivalent is not settlement. All example payments still use the NEIRO mint. Read docs/currencies.md and run `npm run demo -- --recipe=multi-currency` to verify all currently listed fiat currencies plus fixed NEIRO locally.
 
 ## Run

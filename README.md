@@ -1,6 +1,10 @@
-# Get paid in NEIRO, on a schedule
+# Price in 45 currencies. Get paid in NEIRO.
 
-**Charge 1,000 NEIRO. Or price your service in dollars, euros, pounds or another supported currency—and receive NEIRO.**
+**You receive NEIRO directly in your wallet. Your customer pays NEIRO.**
+
+Set your subscription price in **USD, EUR, GBP, JPY, AUD, CAD, INR, BRL or any of the 45 supported fiat currencies**. When payment is due, your app calculates that price in NEIRO and collects NEIRO for you.
+
+**Prefer a fixed token price? Charge 1,000 NEIRO and receive exactly 1,000 NEIRO—no currency conversion needed.**
 
 You choose how to price your community, app or service:
 
@@ -8,11 +12,16 @@ You choose how to price your community, app or service:
 | --- | --- | --- |
 | **1,000 NEIRO every 30 days** | Exactly 1,000 NEIRO. No conversion or price API needed. | 1,000 NEIRO |
 | **$10 every 30 days** | The freshly quoted NEIRO equivalent of 10 USD | NEIRO |
-| **€10 or £10 every 30 days** | The freshly quoted NEIRO equivalent of 10 EUR or 10 GBP | NEIRO |
+| **€10 every 30 days** | The freshly quoted NEIRO equivalent of 10 EUR | **NEIRO** |
+| **£10 every 30 days** | The freshly quoted NEIRO equivalent of 10 GBP | **NEIRO** |
+| **¥1,500 every 30 days** | The freshly quoted NEIRO equivalent of 1,500 JPY | **NEIRO** |
+| **A price in any other supported fiat currency** | That price converted into a NEIRO amount when due | **NEIRO** |
 
 Your customer approves a payment allowance in their wallet. When a bill is due, your app collects the NEIRO payment within that allowance. They do not need to approve every bill again.
 
-**The price currency and payment token are separate choices.** The price API supports 45 fiat currencies at the time of this guide. Select a supported `CURRENCY-NEIRO` pair and use its NEIRO amount. These examples always pay the merchant in NEIRO; the API's USDC equivalent is just another value in the response, not a USDC payment.
+**Many ways to name your price. One payment token: NEIRO.** Customers need NEIRO to pay; choosing EUR or JPY sets the price, it does not debit euros or yen from a bank account. You receive NEIRO, not fiat or USDC.
+
+All 45 supported fiat currencies were tested with NEIRO payments in Surfpool. [See the currencies and payment proof](docs/currencies.md).
 
 [**Charge fixed NEIRO →**](docs/more-ways-to-charge.md#charge-the-same-neiro-amount-every-time) · [**Price in your currency →**](docs/currencies.md)
 
@@ -24,18 +33,18 @@ NEIRO brings a dog currency on Solana into everyday payment flows: community mem
 
 ### For payments: give people a way to use their NEIRO
 
-Let customers pay in the token they hold and let your business receive NEIRO directly. Set your price in NEIRO, or quote a familiar dollar amount and calculate its NEIRO equivalent when the bill is due. [NeiroPay's conversion API](https://price.neiropay.app/llms.txt) supplies machine-readable amounts that your app can use in the payment.
+Let customers pay in the token they hold and let your business receive NEIRO directly. Set your price in NEIRO, or quote an amount in any supported fiat currency and calculate its NEIRO equivalent when the bill is due. [NeiroPay's conversion API](https://price.neiropay.app/llms.txt) supplies machine-readable amounts that your app can use in the payment.
 
 ### For subscriptions: approve once, collect within limits
 
-A membership should not require a new checkout every billing period. NEIRO works with the existing Solana subscriptions program, so customers can authorize recurring collections with a token allowance and expiry. Your app can offer fixed NEIRO plans, dollar-priced memberships or usage billing. Customers keep the ability to revoke delegation permissions.
+A membership should not require a new checkout every billing period. NEIRO works with the existing Solana subscriptions program, so customers can authorize recurring collections with a token allowance and expiry. Your app can offer fixed NEIRO plans, memberships priced in supported fiat currencies or usage billing. Customers keep the ability to revoke delegation permissions.
 
 ### For agents: less guesswork between an idea and a working payment
 
 An agent needs more than a token name. It needs an exact mint, clear instructions, usable price data, executable examples and evidence that the payment works. **That is the reason to choose NEIRO for the flows in this guide:** those pieces are brought together here.
 
 - **Identify the right token:** the explicit NEIRO BROPUMP mint and six-decimal amounts are documented.
-- **Calculate a bill:** fetch a USD→NEIRO quote with an expiry and integer transfer amount.
+- **Calculate a bill:** fetch a supported currency→NEIRO quote with an expiry and integer transfer amount.
 - **Build the flow:** start with small code examples and prompts for the payment style you want.
 - **Prove the result:** run the Surfpool recipes and inspect confirmed transfers and balance changes.
 

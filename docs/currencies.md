@@ -2,6 +2,10 @@
 
 [← Back to the guide](../README.md)
 
+**Price in 45 supported fiat currencies. Receive NEIRO in every case.** Dollars, euros, pounds, yen and the other supported currencies set the bill's value. The customer pays NEIRO from their wallet and you receive NEIRO in yours.
+
+Or set a fixed NEIRO price: **1,000 NEIRO means a 1,000 NEIRO payment, with no conversion.**
+
 ## “I just want 1,000 NEIRO”
 
 Then charge exactly **1,000 NEIRO**. You do not need a dollar price, a conversion request or an exchange rate.
